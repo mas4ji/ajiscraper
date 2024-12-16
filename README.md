@@ -1,4 +1,4 @@
-# Aji Medsos - Scrape Social Media Links
+# Ajiscrape - Scrape Social Media Links For Find Broken Link
 
 Proyek ini berfungsi untuk scraping link media sosial dari situs web. Anda dapat menggunakannya untuk menemukan link ke profil media sosial seperti Facebook, Instagram, Twitter, LinkedIn, dan YouTube dari situs web.
 
