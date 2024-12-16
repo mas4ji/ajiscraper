@@ -8,38 +8,44 @@ Proyek ini berfungsi untuk scraping link media sosial dari situs web. Anda dapat
 - Mendukung platform media sosial utama: Facebook, Instagram, Twitter, LinkedIn, YouTube.
 - Output dapat disimpan dalam file teks.
 
-## Instalasi
+## Instalasi Manual
 
-Untuk menginstal proyek ini dan semua dependensi yang diperlukan, Anda dapat menjalankan perintah berikut dalam terminal:
+Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara manual:
 
-```bash
-pip install git+https://github.com/mas4ji/ajiscraper.git
-```
+1. **Clone repositori**:
 
+    Pertama, clone repositori dari GitHub ke sistem lokal Anda dengan perintah berikut:
+
+    ```bash
+    git clone https://github.com/mas4ji/ajiscraper.git
+    ```
+
+2. **Masuk ke direktori proyek**:
+
+    Setelah repositori di-clone, masuk ke direktori proyek dengan perintah:
+
+    ```bash
+    cd ajiscraper
+    ```
+
+3. **Instal dependensi**:
+
+    Instal semua dependensi yang diperlukan dengan menjalankan:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Jalankan program**:
+
+    Setelah semua dependensi terinstal, Anda dapat menjalankan program sesuai dengan instruksi di bagian penggunaan (usage).
 
 ---
 
-### **`LICENSE`** (Opsional, lisensi MIT)
+## Penggunaan
 
-```plaintext
-MIT License
+Untuk menggunakan skrip ini, Anda bisa memilih untuk memproses satu domain atau beberapa domain sekaligus.
 
-Copyright (c) 2024 Aji Medsos
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### Menggunakan satu domain:
+```bash
+python3 ajiscrape.py -d example.com -o hasil_scraping.txt
