@@ -14,6 +14,7 @@ Untuk menginstal proyek ini dan semua dependensi yang diperlukan, Anda dapat men
 
 ```bash
 pip install git+https://github.com/mas4ji/ajiscraper.git
+```
 
 
 ---
