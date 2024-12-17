@@ -34,16 +34,19 @@ def print_header():
     """
     print(Fore.GREEN + ascii_art)
     print(Fore.YELLOW + "Usage:")
-    print("  -d, --domain   Scrape single domain (e.g., example.com atau https://example.com)")
+    print("  -d, --domain   Scrape single domain (e.g., example.com or https://example.com)")
     print("  -f, --file     Scrape multiple domains from a file")
     print("  -o, --output   Output file to save results (default: social_links.txt)")
-    print("\n")
+    print("  -p, --proxy    Use a proxy for requests (e.g., http://127.0.0.1:8080)")
 
-def scrape_social_links(url, result_file):
+def scrape_social_links(url, result_file, proxy=None):
     try:
         url = format_url(url)
         print(Fore.CYAN + f"[INFO] Mengakses {url}...")
-        response = requests.get(url, timeout=10)
+        
+        # Setup proxy jika diberikan
+        proxies = {"http": proxy, "https": proxy} if proxy else None
+        response = requests.get(url, timeout=10, proxies=proxies)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
         
@@ -75,7 +78,7 @@ def scrape_social_links(url, result_file):
     except Exception as e:
         print(Fore.RED + f"[ERROR] Tidak bisa mengakses {url}: {e}")
 
-def scrape_from_file(file_path, result_file):
+def scrape_from_file(file_path, result_file, proxy=None):
     if not os.path.exists(file_path):
         print(Fore.RED + f"[ERROR] File {file_path} tidak ditemukan!")
         return
@@ -83,13 +86,14 @@ def scrape_from_file(file_path, result_file):
     with open(file_path, "r") as f:
         domains = f.read().splitlines()
         for domain in domains:
-            scrape_social_links(domain.strip(), result_file)
+            scrape_social_links(domain.strip(), result_file, proxy)
 
 if __name__ == "__main__":  # Memperbaiki penulisan _name_ menjadi __name__
     parser = argparse.ArgumentParser(description="Scrape social media links from websites.")
     parser.add_argument("-d", "--domain", help="Single domain to scrape.")
     parser.add_argument("-f", "--file", help="File containing list of domains (one per line).")
     parser.add_argument("-o", "--output", help="Output file for saving results.", default="social_links.txt")
+    parser.add_argument("-p", "--proxy", help="Use a proxy for requests (e.g., http://127.0.0.1:8080).", default=None)
     args = parser.parse_args()
     
     # Tampilkan header jika tidak ada argumen yang valid
@@ -101,6 +105,6 @@ if __name__ == "__main__":  # Memperbaiki penulisan _name_ menjadi __name__
             os.remove(args.output)
 
         if args.domain:
-            scrape_social_links(args.domain, args.output)
+            scrape_social_links(args.domain, args.output, args.proxy)
         elif args.file:
-            scrape_from_file(args.file, args.output)
+            scrape_from_file(args.file, args.output, args.proxy)
