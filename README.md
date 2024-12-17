@@ -62,14 +62,17 @@ python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 <a href="https://www.youtube.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="0xkayala" height="30" width="40" /></a>
 </p>
 
+### Peringatan
 
-## Dukung Saya:
-Jika Anda merasa proyek ini bermanfaat dan ingin mendukung, Anda bisa melakukannya melalui BuyMeACoffee:
+**AjiScrape** dibuat untuk tujuan edukasi dan penelitian keamanan siber semata. Penggunaan alat ini untuk tujuan yang tidak sah, seperti mengakses atau mengumpulkan data dari situs web tanpa izin eksplisit dari pemiliknya, dapat melanggar hukum dan kebijakan privasi.
 
-<p align="center">
-  <a href="https://www.buymeacoffee.com/mas4ji">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="Dukung Saya" />
-  </a>
-</p>
+**Pengguna bertanggung jawab sepenuhnya atas penggunaan alat ini.** Kami tidak bertanggung jawab atas segala bentuk kerugian, dampak hukum, atau konsekuensi negatif lainnya yang timbul akibat penggunaan alat ini.
+
+Dengan menggunakan alat ini, Anda setuju untuk tidak menggunakannya untuk aktivitas yang merusak, seperti:
+
+- **Menyalahgunakan** data yang diambil dari situs web untuk tujuan yang tidak sah.
+- **Menggunakan** alat ini untuk mengakses informasi pribadi atau sensitif yang dilindungi oleh hukum.
+
+Harap pastikan bahwa penggunaan alat ini sesuai dengan hukum yang berlaku di wilayah Anda dan dapatkan izin terlebih dahulu sebelum mengakses atau mengumpulkan data dari situs web pihak ketiga.
 
 Terima kasih telah menggunakan ajihunter. Semoga alat ini membantu Anda dalam menjaga keamanan aplikasi web!
