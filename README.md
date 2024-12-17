@@ -5,19 +5,19 @@
 
 ![Ajiscraper Screenshot](https://github.com/mas4ji/ajisec/blob/main/image%20(21).png)
 
-Proyek ini dirancang untuk melakukan scraping link media sosial dari situs web dan memeriksa apakah ada link yang rusak. Anda dapat menggunakannya untuk menemukan link ke profil media sosial seperti Facebook, Instagram, Twitter, LinkedIn, dan YouTube dari situs web. Alat ini akan membantu dalam menemukan dan menangani broken links (link yang rusak) dari situs web.
+This project is designed to scrape social media links from websites and check for broken links. You can use it to find links to social media profiles such as Facebook, Instagram, Twitter, LinkedIn, and YouTube from websites. This tool will help in identifying and handling broken links on websites.
 
-## Fitur
+## Features
 
-- Scraping link media sosial dari satu atau banyak situs web.
-- Mendukung platform media sosial utama: Facebook, Instagram, Twitter, LinkedIn, YouTube.
-- Output dapat disimpan dalam file teks.
-- Memeriksa apakah link media sosial tersebut berfungsi dengan baik atau rusak.
-- Mudah digunakan untuk kebutuhan bug hunting dan analisis web.
+- Scrapes social media links from one or multiple websites.
+- Supports major social media platforms: Facebook, Instagram, Twitter, LinkedIn, YouTube.
+- Output can be saved in a text file.
+- Checks whether the social media links are working or broken.
+- Easy to use for bug hunting and web analysis purposes.
 
-## Instalasi Manual
+## Manual Installation
 
-Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara manual:
+Follow the steps below to install and run this project manually:
 
 1. **Clone repositori**:
 
@@ -25,38 +25,38 @@ Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara
     git clone https://github.com/mas4ji/ajiscraper.git
     ```
 
-2. **Masuk ke direktori proyek**:
+2. **Navigate to the project directory**:
    
     ```bash
     cd ajiscraper
     ```
 
-4. **Instal dependensi**:
+4. **Install dependencies**:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-5. **Jalankan program**:
+5. **Run the program**:
 
-    Setelah semua dependensi terinstal, Anda dapat menjalankan program sesuai dengan instruksi di bagian penggunaan (usage).
+   Once all dependencies are installed, you can run the program as instructed in the usage section..
 
 ---
 
-## Penggunaan
+## Usage
 
-Untuk menggunakan skrip ini, Anda bisa memilih untuk memproses satu domain atau beberapa domain sekaligus.
+To use this script, you can choose to process a single domain or multiple domains at once.
 
-Menggunakan satu domain:
+For a single domain:
 
 ```bash
 python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 ```
 
-## Dokumentasi
-Untuk dokumentasi lengkap tentang cara menggunakan dan mengonfigurasi alat ini, kunjungi [Wiki Proyek ini](https://github.com/mas4ji/ajiscraper/wiki).
+## Documentation
+For full documentation on how to use and configure this tool, visit the [Wiki Proyek ini](https://github.com/mas4ji/ajiscraper/wiki).
 
-## Kontak Saya:
+## Contact Me:
 <p align="left">
 <a href="https://linkedin.com/in/fazriansyahmuh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="0xkayala" height="30" width="40" /></a>
 <a href="https://instagram.com/fazriansyahmuh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="0xkayala" height="30" width="40" /></a>
@@ -70,5 +70,5 @@ Untuk dokumentasi lengkap tentang cara menggunakan dan mengonfigurasi alat ini, 
 
 
 ## Security Notice
-Alat ini ditujukan untuk tujuan pendidikan dan audit keamanan. Pastikan Anda memiliki izin eksplisit sebelum melakukan scraping pada situs web apa pun. Pencipta tidak bertanggung jawab atas segala kerusakan atau aktivitas ilegal yang disebabkan oleh penyalahgunaan alat ini.
+This tool is intended for educational and security auditing purposes. Make sure you have explicit permission before scraping any website. The creators are not responsible for any damages or illegal activities caused by the misuse of this tool.
 
