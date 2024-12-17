@@ -15,6 +15,7 @@ Proyek ini dirancang untuk melakukan scraping link media sosial dari situs web d
 - Memeriksa apakah link media sosial tersebut berfungsi dengan baik atau rusak.
 - Mudah digunakan untuk kebutuhan bug hunting dan analisis web.
 
+## Demo
 ![Ajiscraper Screenshot](https://github.com/mas4ji/ajisec/blob/main/image%20(22).png)
 
 ## Instalasi Manual
