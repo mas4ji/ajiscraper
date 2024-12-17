@@ -2,12 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import argparse
-from colorama import Fore, Back, Style, init
+from colorama import Fore, init
 
-# Inisialisasi colorama
+# Initialize colorama
 init(autoreset=True)
 
-# Daftar platform media sosial
+# List of social media platforms
 SOCIAL_MEDIA = {
     "facebook": "facebook.com",
     "instagram": "instagram.com",
@@ -17,18 +17,18 @@ SOCIAL_MEDIA = {
 }
 
 def format_url(url):
-    """Tambahkan http:// jika URL tidak memiliki protokol."""
+    """Add http:// if URL doesn't have a protocol."""
     if not url.startswith("http://") and not url.startswith("https://"):
         url = "http://" + url
     return url
 
 def print_header():
     ascii_art = r"""
-        _     _ _   ____                            
+        _     _ _   ____                             
    / \   (_|_) / ___|  ___ _ __ __ _ _ __   ___ 
   / _ \  | | | \___ \ / __| '__/ _` | '_ \ / _ \
  / ___ \ | | |  ___) | (__| | | (_| | |_) |  __/
-/_/   \_\/ |_| |____/ \___|_|  \__,_| .__/ \___|
+ /_/   \_\/ |_| |____/ \___|_|  \__,_| .__/ \___|
        |__/                         |_|          
    Aji Scrape - Scrape and Check Social Media Links for Broken Links on Websites
     """
@@ -39,18 +39,44 @@ def print_header():
     print("  -o, --output   Output file to save results (default: social_links.txt)")
     print("  -p, --proxy    Use a proxy for requests (e.g., http://127.0.0.1:8080)")
 
+def is_user_active(url):
+    """Check if the social media account is active or not."""
+    try:
+        response = requests.get(url, timeout=10)
+        
+        # Check for HTTP status codes
+        if response.status_code == 404:
+            return False
+        # Check for forbidden or server error status codes
+        if response.status_code == 403 or response.status_code == 500:
+            print(Fore.RED + f"[ERROR] Access denied or error on {url} (HTTP {response.status_code})")
+            return False
+        
+        # Check for "user not found" or "page not found" in page content
+        if "user not found" in response.text.lower() or "page not found" in response.text.lower():
+            return False
+        
+        # Check for Instagram and other platforms' "Sorry, this page isn't available"
+        if "Sorry, this page isn't available" in response.text or "User not found" in response.text:
+            return False
+        
+        return True  # The account is active if no issues were found
+    except Exception as e:
+        print(Fore.RED + f"[ERROR] Unable to access {url}: {e}")
+        return False
+
 def scrape_social_links(url, result_file, proxy=None):
     try:
         url = format_url(url)
-        print(Fore.CYAN + f"[INFO] Mengakses {url}...")
-        
-        # Setup proxy jika diberikan
+        print(Fore.CYAN + f"[INFO] Accessing {url}...")
+
+        # Setup proxy if provided
         proxies = {"http": proxy, "https": proxy} if proxy else None
         response = requests.get(url, timeout=10, proxies=proxies)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
-        
-        # Cari semua <a> tag dengan href
+
+        # Find all <a> tags with href
         links = soup.find_all("a", href=True)
         social_links = {}
 
@@ -62,25 +88,30 @@ def scrape_social_links(url, result_file, proxy=None):
                         social_links[platform] = []
                     social_links[platform].append(href)
         
-        # Tulis hasil scraping ke file output
+        # Write the results to the output file
         with open(result_file, "a") as f:
-            f.write(f"{url}\n")  # Nama domain di atas
+            f.write(f"{url}\n")  # Domain name at the top
             if social_links:
-                print(Fore.GREEN + f"[INFO] Ditemukan link media sosial di {url}:")
+                print(Fore.GREEN + f"[INFO] Found social media links on {url}:")
                 for platform, urls in social_links.items():
-                    for social_url in set(urls):  # Hapus duplikat
-                        f.write(f"  - {platform.capitalize()}: {social_url}\n")
-                        print(f"  - {platform.capitalize()}: {social_url}")
+                    for social_url in set(urls):  # Remove duplicates
+                        # Check if the account is active and provide 'vulnerable' or 'not vulnerable'
+                        if is_user_active(social_url):
+                            f.write(f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]\n")
+                            print(Fore.GREEN + f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]")
+                        else:
+                            f.write(f"  - {platform.capitalize()}: {social_url} [Vulnerable]\n")
+                            print(Fore.RED + f"  - {platform.capitalize()}: {social_url} [Vulnerable]")
             else:
-                print(Fore.RED + f"[INFO] Tidak ditemukan link media sosial di {url}.")
-                f.write("  Tidak ada link media sosial yang ditemukan.\n")
-            f.write("\n")  # Tambahkan baris kosong untuk pemisah
+                print(Fore.RED + f"[INFO] No social media links found on {url}.")
+                f.write("  No social media links found.\n")
+            f.write("\n")  # Add an empty line for separation
     except Exception as e:
-        print(Fore.RED + f"[ERROR] Tidak bisa mengakses {url}: {e}")
+        print(Fore.RED + f"[ERROR] Unable to access {url}: {e}")
 
 def scrape_from_file(file_path, result_file, proxy=None):
     if not os.path.exists(file_path):
-        print(Fore.RED + f"[ERROR] File {file_path} tidak ditemukan!")
+        print(Fore.RED + f"[ERROR] File {file_path} not found!")
         return
     
     with open(file_path, "r") as f:
@@ -88,19 +119,19 @@ def scrape_from_file(file_path, result_file, proxy=None):
         for domain in domains:
             scrape_social_links(domain.strip(), result_file, proxy)
 
-if __name__ == "__main__":  # Memperbaiki penulisan _name_ menjadi __name__
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scrape social media links from websites.")
     parser.add_argument("-d", "--domain", help="Single domain to scrape.")
     parser.add_argument("-f", "--file", help="File containing list of domains (one per line).")
     parser.add_argument("-o", "--output", help="Output file for saving results.", default="social_links.txt")
     parser.add_argument("-p", "--proxy", help="Use a proxy for requests (e.g., http://127.0.0.1:8080).", default=None)
     args = parser.parse_args()
-    
-    # Tampilkan header jika tidak ada argumen yang valid
+
+    # Show the header if no valid arguments are provided
     if not (args.domain or args.file):
         print_header()
     else:
-        # Hapus file output jika sudah ada (agar selalu mulai dari awal)
+        # Delete the output file if it already exists (so we always start fresh)
         if os.path.exists(args.output):
             os.remove(args.output)
 
