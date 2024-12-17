@@ -1,5 +1,7 @@
 # AjiScrape - Scrape and Check Social Media Links for Broken Links on Websites
 
+![Ajiscraper Screenshot](https://github.com/mas4ji/ajisec/blob/main/image%20(21).png)
+
 Proyek ini dirancang untuk melakukan scraping link media sosial dari situs web dan memeriksa apakah ada link yang rusak. Anda dapat menggunakannya untuk menemukan link ke profil media sosial seperti Facebook, Instagram, Twitter, LinkedIn, dan YouTube dari situs web. Alat ini akan membantu dalam menemukan dan menangani broken links (link yang rusak) dari situs web.
 
 ## Fitur
