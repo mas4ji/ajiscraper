@@ -1,4 +1,4 @@
-# AjiScrape - Scrape and Check Social Media Links for Broken Links on Websites
+# AjiScrape - Scrape Social Media Links for Broken Links on Websites
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
@@ -56,7 +56,7 @@ Untuk menggunakan skrip ini, Anda bisa memilih untuk memproses satu domain atau 
 python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 ```
 
-## Connect with me:
+## Kontak Saya:
 <p align="left">
 <a href="https://linkedin.com/in/fazriansyahmuh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="0xkayala" height="30" width="40" /></a>
 <a href="https://instagram.com/fazriansyahmuh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="0xkayala" height="30" width="40" /></a>
@@ -69,17 +69,6 @@ python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 - Special thanks to the open-source community for their amazing libraries and support!
 
 
-## Peringatan
+## Security Notice
+Alat ini ditujukan untuk tujuan pendidikan dan audit keamanan. Pastikan Anda memiliki izin eksplisit sebelum melakukan scraping pada situs web apa pun. Pencipta tidak bertanggung jawab atas segala kerusakan atau aktivitas ilegal yang disebabkan oleh penyalahgunaan alat ini.
 
-**AjiScrape** dibuat untuk tujuan edukasi dan penelitian keamanan siber semata. Penggunaan alat ini untuk tujuan yang tidak sah, seperti mengakses atau mengumpulkan data dari situs web tanpa izin eksplisit dari pemiliknya, dapat melanggar hukum dan kebijakan privasi.
-
-**Pengguna bertanggung jawab sepenuhnya atas penggunaan alat ini.** Kami tidak bertanggung jawab atas segala bentuk kerugian, dampak hukum, atau konsekuensi negatif lainnya yang timbul akibat penggunaan alat ini.
-
-Dengan menggunakan alat ini, Anda setuju untuk tidak menggunakannya untuk aktivitas yang merusak, seperti:
-
-- **Menyalahgunakan** data yang diambil dari situs web untuk tujuan yang tidak sah.
-- **Menggunakan** alat ini untuk mengakses informasi pribadi atau sensitif yang dilindungi oleh hukum.
-
-Harap pastikan bahwa penggunaan alat ini sesuai dengan hukum yang berlaku di wilayah Anda dan dapatkan izin terlebih dahulu sebelum mengakses atau mengumpulkan data dari situs web pihak ketiga.
-
-Terima kasih telah menggunakan ajihunter. Semoga alat ini membantu Anda dalam menjaga keamanan aplikasi web!
