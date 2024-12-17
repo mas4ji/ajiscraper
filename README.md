@@ -20,29 +20,23 @@ Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara
 
 1. **Clone repositori**:
 
-    Pertama, clone repositori dari GitHub ke sistem lokal Anda dengan perintah berikut:
-
     ```bash
     git clone https://github.com/mas4ji/ajiscraper.git
     ```
 
 2. **Masuk ke direktori proyek**:
-
-    Setelah repositori di-clone, masuk ke direktori proyek dengan perintah:
-
+   
     ```bash
     cd ajiscraper
     ```
 
-3. **Instal dependensi**:
-
-    Instal semua dependensi yang diperlukan dengan menjalankan:
+4. **Instal dependensi**:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. **Jalankan program**:
+5. **Jalankan program**:
 
     Setelah semua dependensi terinstal, Anda dapat menjalankan program sesuai dengan instruksi di bagian penggunaan (usage).
 
