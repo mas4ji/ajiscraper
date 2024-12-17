@@ -56,6 +56,9 @@ Untuk menggunakan skrip ini, Anda bisa memilih untuk memproses satu domain atau 
 python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 ```
 
+## Dokumentasi
+Untuk dokumentasi lengkap tentang cara menggunakan dan mengonfigurasi alat ini, kunjungi [Wiki Proyek ini](https://github.com/mas4ji/ajiscraper/wiki).
+
 ## Kontak Saya:
 <p align="left">
 <a href="https://linkedin.com/in/fazriansyahmuh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="0xkayala" height="30" width="40" /></a>
