@@ -37,9 +37,6 @@ def print_header():
     print("  -d, --domain   Scrape single domain (e.g., example.com atau https://example.com)")
     print("  -f, --file     Scrape multiple domains from a file")
     print("  -o, --output   Output file to save results (default: social_links.txt)")
-    print("\n" + Fore.CYAN + "Examples:")
-    print("  python scrape_social_links.py -d example.com -o hasil_scraping.txt")
-    print("  python scrape_social_links.py -f domains.txt -o hasil_scraping.txt")
     print("\n")
 
 def scrape_social_links(url, result_file):
