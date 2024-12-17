@@ -30,7 +30,7 @@ def print_header():
  / ___ \ | | |  ___) | (__| | | (_| | |_) |  __/
 /_/   \_\/ |_| |____/ \___|_|  \__,_| .__/ \___|
        |__/                         |_|          
-   Aji Scrape - Scraping and Checking for Broken Social Media Links
+   Aji Scrape - Scrape and Check Social Media Links for Broken Links on Websites
     """
     print(Fore.GREEN + ascii_art)
     print(Fore.YELLOW + "Usage:")
