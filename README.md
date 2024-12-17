@@ -15,9 +15,6 @@ Proyek ini dirancang untuk melakukan scraping link media sosial dari situs web d
 - Memeriksa apakah link media sosial tersebut berfungsi dengan baik atau rusak.
 - Mudah digunakan untuk kebutuhan bug hunting dan analisis web.
 
-## Demo
-![Ajiscraper Screenshot](https://github.com/mas4ji/ajisec/blob/main/image%20(22).png)
-
 ## Instalasi Manual
 
 Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara manual:
@@ -50,7 +47,7 @@ Ikuti langkah-langkah berikut untuk menginstal dan menjalankan proyek ini secara
 
 Untuk menggunakan skrip ini, Anda bisa memilih untuk memproses satu domain atau beberapa domain sekaligus.
 
-### Menggunakan satu domain:
+Menggunakan satu domain:
 
 ```bash
 python3 ajiscrape.py -d example.com -o hasil_scraping.txt
