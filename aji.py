@@ -1,4 +1,6 @@
 import requests
+from requests.exceptions import RequestException, ConnectionError, Timeout
+from urllib3.exceptions import NewConnectionError, MaxRetryError, NameResolutionError
 from bs4 import BeautifulSoup
 import os
 import argparse
@@ -47,33 +49,46 @@ def is_user_active(url):
         # Check for HTTP status codes
         if response.status_code == 404:
             return False
-        # Check for forbidden or server error status codes
         if response.status_code == 403 or response.status_code == 500:
-            print(Fore.RED + f"[ERROR] Access denied or error on {url} (HTTP {response.status_code})")
             return False
-        
-        # Check for "user not found" or "page not found" in page content
         if "user not found" in response.text.lower() or "page not found" in response.text.lower():
             return False
-        
-        # Check for Instagram and other platforms' "Sorry, this page isn't available"
         if "Sorry, this page isn't available" in response.text or "User not found" in response.text:
             return False
         
         return True  # The account is active if no issues were found
-    except Exception as e:
-        print(Fore.RED + f"[ERROR] Unable to access {url}: {e}")
+    except NameResolutionError:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: DNS Error (Could not resolve hostname).")
+        return False
+    except MaxRetryError:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: Max retries exceeded (Temporary DNS failure).")
+        return False
+    except NewConnectionError:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: DNS Error (Failed to establish a new connection).")
+        return False
+    except ConnectionError:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: Connection error (Server may be down or unreachable).")
+        return False
+    except Timeout:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: Timeout error (Server took too long to respond).")
+        return False
+    except RequestException as e:
+        print(Fore.BLUE + f"[ERROR] Unable to access {url}: Website ERROR ({e}).")
         return False
 
 def scrape_social_links(url, result_file, proxy=None):
     try:
         url = format_url(url)
-        print(Fore.CYAN + f"[INFO] Accessing {url}...")
 
         # Setup proxy if provided
         proxies = {"http": proxy, "https": proxy} if proxy else None
-        response = requests.get(url, timeout=10, proxies=proxies)
-        response.raise_for_status()
+        try:
+            response = requests.get(url, timeout=10, proxies=proxies)
+            response.raise_for_status()
+        except (RequestException, ConnectionError, Timeout, NameResolutionError, MaxRetryError, NewConnectionError):
+            print(Fore.BLUE + f"[ERROR] Unable to access {url}: Website ERROR")
+            return  # Skip the processing if the website is not accessible
+        
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Find all <a> tags with href
@@ -96,22 +111,30 @@ def scrape_social_links(url, result_file, proxy=None):
                 for platform, urls in social_links.items():
                     for social_url in set(urls):  # Remove duplicates
                         # Check if the account is active and provide 'vulnerable' or 'not vulnerable'
-                        if is_user_active(social_url):
-                            f.write(f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]\n")
-                            print(Fore.GREEN + f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]")
+                        if platform == "instagram":
+                            if is_user_active(social_url):
+                                f.write(f"  - {platform.capitalize()}: {social_url} [Potential Vulnerable]\n")
+                                print(Fore.YELLOW + f"  - {platform.capitalize()}: {social_url} [Potential Vulnerable]")
+                            else:
+                                f.write(f"  - {platform.capitalize()}: {social_url} [Vulnerable]\n")
+                                print(Fore.RED + f"  - {platform.capitalize()}: {social_url} [Vulnerable]")
                         else:
-                            f.write(f"  - {platform.capitalize()}: {social_url} [Vulnerable]\n")
-                            print(Fore.RED + f"  - {platform.capitalize()}: {social_url} [Vulnerable]")
+                            if is_user_active(social_url):
+                                f.write(f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]\n")
+                                print(Fore.GREEN + f"  - {platform.capitalize()}: {social_url} [Not Vulnerable]")
+                            else:
+                                f.write(f"  - {platform.capitalize()}: {social_url} [Vulnerable]\n")
+                                print(Fore.RED + f"  - {platform.capitalize()}: {social_url} [Vulnerable]")
             else:
                 print(Fore.RED + f"[INFO] No social media links found on {url}.")
                 f.write("  No social media links found.\n")
             f.write("\n")  # Add an empty line for separation
     except Exception as e:
-        print(Fore.RED + f"[ERROR] Unable to access {url}: {e}")
-
+        print(Fore.BLUE + f"[ERROR] Unknown error occurred while accessing {url}: {e}.")
+    
 def scrape_from_file(file_path, result_file, proxy=None):
     if not os.path.exists(file_path):
-        print(Fore.RED + f"[ERROR] File {file_path} not found!")
+        print(Fore.BLUE + f"[ERROR] File {file_path} not found!")
         return
     
     with open(file_path, "r") as f:
