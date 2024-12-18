@@ -53,8 +53,8 @@ For a single domain:
 python3 ajiscrape.py -d example.com -o hasil_scraping.txt
 ```
 
-## Documentation
-For full documentation on how to use and configure this tool, visit the [Wiki Proyek ini](https://github.com/mas4ji/ajiscraper/wiki).
+## ⚠️ Warning
+This tool is not 100% accurate, so it must also be manually validated to ensure its accuracy.
 
 ## Contact Me:
 <p align="left">
